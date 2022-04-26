@@ -45,11 +45,61 @@
                     
                     <input type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
+                <!-- Lista chat -->
+                <div class="chats">
+                    <div class="chat" :class="currentChat.includes(contact) ? 'active' : ''" v-for="(contact) in contacts" @click="activeChat(contact)">
+                        <div class="chat_logo">
+                            <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt=""> 
+                        </div>
+                        <div class="chat_text">
+                            <span>{{contact.name}}</span>
+                            <span>Ultimo messaggio inviato</span>
+                            <span class="chat_time">
+                                12:00
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </nav>
 
         <!-- Main Content -->
-        <div class="wa_main"></div>
+        <div class="wa_main" v-for="(contact) in currentChat">
+            <div class="active_chat chat">
+                    <div class="chat_logo">
+                        <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt=""> 
+                    </div>
+                    <div class="chat_text">
+                        <span>{{contact.name}}</span>
+                        <span>Ultimo accesso oggi alle 12:30</span>
+                    </div>
+                <div class="icons active_icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-paperclip"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+
+            <!-- Messages list -->
+            <div class="messages">
+                <div class="msg_margin" v-for="message_info in contact.messages" :class="message_info.status === 'sent' ? 'j-end' : 'j-start'">
+                    <span :class="message_info.status === 'sent' ? 'msg_sent' : 'msg_received'" class="message">
+                        {{message_info.message}}
+                        <span class="message_time">
+                            12:00
+                        </span>
+                    </span> 
+                </div>
+            </div>
+
+            <!-- Send message -->
+            <div class="send_message">
+                <i class="fa-regular fa-face-smile fa-lg"></i>
+                <input type="text" placeholder="Scrivi un messaggio">
+                <i class="fa-solid fa-microphone fa-lg"></i>
+            </div>
+        </div>
     </div>
 
 

@@ -1,6 +1,7 @@
 const app = new Vue ({
     el: '#app',
     data: {
+        currentChat: [],
         contacts: [
             {
                 name: 'Michele',
@@ -166,6 +167,11 @@ const app = new Vue ({
         ]
     },
     methods: {
+        activeChat(contact){
+            this.currentChat = []
+            this.currentChat.push(contact)
+            console.log(contact, this.currentChat);
 
+        }
     }
 })
