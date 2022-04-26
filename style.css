@@ -21,6 +21,7 @@ main{
 .wa{
     width: 1200px;
     height: calc(100vh - 2rem);
+    background-color: white;
     display: flex;
     position: absolute;
     top: 1rem;
@@ -197,6 +198,11 @@ main{
     right: 0.5rem;
 }
 
+.empty_chats{
+    width: 60%;
+    height: 100%;
+    background-color: white;
+}
 
 .send_message{
     position: absolute;
