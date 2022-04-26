@@ -43,6 +43,7 @@
 }
 /* #endregion */
 
+/* #region Notifiche */
 .notifications{
     display: flex;
     align-items: center;
@@ -75,9 +76,30 @@
     color: rgb(108, 108, 108);
     text-decoration:underline;
 }
-
+/* #endregion */
 
 
 .wa_main{
     width: 60%;
+}
+
+
+.search{
+    padding: 0.3rem;
+    display: flex;
+    background-color: 
+    rgba(247, 247, 247, 1);
+}
+
+.search_icon{
+    background-color: white;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+}
+
+.search>input{
+    border: none;
+    width: 100%;
+    text-indent: 20px;
 }
