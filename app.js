@@ -172,6 +172,14 @@ const app = new Vue ({
             this.currentChat.push(contact)
             console.log(contact, this.currentChat);
 
-        }
+            contact.messages.forEach(message_info => {
+                message_info.hour = message_info.date.slice(11, message_info.date.length - 3)
+            });
+
+            console.log(this.currentChat);
+        },
+        /* getHour(object){
+            return object.date.splice(0, 11)
+        } */
     }
 })

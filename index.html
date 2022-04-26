@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header></header>
+    <main></main>
     <div id="app" class="wa">
         <!-- NavBar laterale -->
         <nav class="wa_nav"> 
@@ -87,7 +89,7 @@
                     <span :class="message_info.status === 'sent' ? 'msg_sent' : 'msg_received'" class="message">
                         {{message_info.message}}
                         <span class="message_time">
-                            12:00
+                            {{message_info.hour}}
                         </span>
                     </span> 
                 </div>
