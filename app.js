@@ -178,8 +178,26 @@ const app = new Vue ({
 
             console.log(this.currentChat);
         },
-        /* getHour(object){
-            return object.date.splice(0, 11)
-        } */
+        selectClick(message_info){
+            //console.log(message_info);
+            const array = this.currentChat[0].messages
+            //console.log(this.currentChat[0].messages);
+            const index = array.indexOf(message_info);
+            const selectElements = document.querySelectorAll('.msg_actions')
+            //console.log(selectElements[index]);
+            const element = selectElements[index]
+            element.classList.toggle('d_none')
+        },
+        deleteMessage(message_info, contact){
+            console.log(message_info);
+            const array = this.currentChat[0].messages
+            console.log(array);
+            const index = array.indexOf(message_info);
+            console.log(index)
+            array.splice(index, 1)
+            console.log(array);
+            console.log(contact);
+        }
+       
     }
 })

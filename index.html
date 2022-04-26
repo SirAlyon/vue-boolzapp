@@ -88,9 +88,16 @@
                 <div class="msg_margin" v-for="message_info in contact.messages" :class="message_info.status === 'sent' ? 'j-end' : 'j-start'">
                     <span :class="message_info.status === 'sent' ? 'msg_sent' : 'msg_received'" class="message">
                         {{message_info.message}}
-                        <span class="message_time">
+                        <div class="message_time">
                             {{message_info.hour}}
-                        </span>
+                        </div>
+                        <div class="message_actions">
+                            <i class="fa-solid fa-angle-down" @click="selectClick(message_info, contact)"></i>
+                            <div class="msg_actions d_none" >
+                                <span @click="deleteMessage(message_info)">Delete Message</span>
+                                <span>Copy Message</span>
+                            </div>
+                        </div>
                     </span> 
                 </div>
             </div>

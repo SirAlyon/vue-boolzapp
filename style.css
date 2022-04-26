@@ -8,6 +8,7 @@ body{
     position: relative;
 }
 
+/* Body backgrounds */
 header{
     height: 90px;
     
@@ -18,6 +19,7 @@ main{
     height: calc(100vh - 90px);
     background-color: rgba(220, 219, 211, 1);
 }
+
 .wa{
     width: 1200px;
     height: calc(100vh - 2rem);
@@ -27,6 +29,12 @@ main{
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.wa_main{
+    width: 60%;
+    background-image: url(./img/mine.jpg);
+    position: relative;
 }
 /* #region NavBar */
 
@@ -60,11 +68,22 @@ main{
     margin: 0 0.3rem;
     color: rgb(145, 145, 145);
 }
-/* #endregion */
 
+i:hover{
+    color: black
+}
+
+input[type=text]:focus {
+    outline: none;
+    border: 2px solid rgba(136, 133, 133, 0.565);
+  }
+  
 .nav_main{
     height: calc(100% - 61px);
 }
+/* #endregion */
+
+
 
 /* #region Notifiche */
 .notifications{
@@ -102,11 +121,7 @@ main{
 }
 /* #endregion */
 
-.wa_main{
-    width: 60%;
-    background-image: url(./img/mine.jpg);
-    position: relative;
-}
+
 
 /* #region search */
 
@@ -124,6 +139,9 @@ main{
     width: 65px;
     display: flex;
     justify-content: center;
+    border-right: 1px solid rgba(211, 211, 211, 0.355);
+    border-left: 1px solid rgba(211, 211, 211, 0.314);
+    
 }
 
 .search>input{
@@ -131,6 +149,7 @@ main{
     width: 100%;
     padding: 0.2rem 0;
     text-indent: 20px;
+    border-radius: 0.2rem;
 }
 
 /* #endregion */
@@ -186,6 +205,7 @@ main{
 
 /* #endregion */
 
+/* Barra Chat Attiva  */
 .active_chat{
     background-color: rgba(234, 234, 234, 1);
     max-height: 61px;
@@ -198,34 +218,7 @@ main{
     right: 0.5rem;
 }
 
-.empty_chats{
-    width: 60%;
-    height: 100%;
-    background-color: white;
-}
-
-.send_message{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 61px;
-    background-color:rgba(243, 238, 234, 1);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    color: rgb(145, 145, 145);
-}
-
-.send_message>input{
-    border: none;
-    width: 80%;
-    text-indent: 10px;
-    padding: 0.7rem 0;
-    border-radius: 0.3rem;
-}
-
+/* Active messages in chat */
 .messages{
     width: 90%;
     margin: 2rem auto;
@@ -258,6 +251,71 @@ main{
     bottom: 2px;
     right: 0.5rem;
 }
+
+.message_actions>i{
+    position: absolute;
+    top: 0.2rem;
+    right: 0.4rem;
+    display: none;
+    color: rgb(113, 113, 113);
+}
+
+.message:hover .message_actions>i{
+    display: block;
+}
+
+.msg_actions{
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgba(186, 186, 186);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    padding: 0px 0.3rem;
+    z-index: 101;
+}
+
+.msg_actions>span{
+    display: block;
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.msg_actions>span:hover{
+    background-color: rgb(109, 109, 109);
+    
+}
+
+/* Barra send message */
+.send_message{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 61px;
+    background-color:rgba(243, 238, 234, 1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: rgb(145, 145, 145);
+}
+
+.send_message>input{
+    border: none;
+    width: 80%;
+    text-indent: 10px;
+    padding: 0.7rem 0;
+    border-radius: 0.3rem;
+}
 /* Utility */
 
 .msg_margin{
@@ -276,4 +334,8 @@ main{
 
 .active{
     background-color: rgba(233, 235, 235, 1)!important;
+}
+
+.d_none{
+    display: none;
 }
