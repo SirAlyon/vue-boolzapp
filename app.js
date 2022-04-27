@@ -2,6 +2,7 @@ const app = new Vue ({
     el: '#app',
     data: {
         newMessage: '',
+        automatedReplies: ['Ciao', 'Ok', 'Va bene! :)', 'Capisco', 'Ci aggiorniamo!'],
         currentChat: [], /* Ho scelto una struttura dati non adatta, mi sto complicando!! */
         contacts: [
             {
@@ -218,10 +219,10 @@ const app = new Vue ({
                 array.messages.push(message)
                 this.newMessage = ''
 
-
+                const n = Math.floor(Math.random() * 4);
                 const automatedMessage = {
                     date: date,
-                    message: 'ok',
+                    message: this.automatedReplies[n],
                     hour: date.slice(11, date.length - 3),
                     status: 'received'
                 }
