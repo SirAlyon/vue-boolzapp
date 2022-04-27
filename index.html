@@ -45,7 +45,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     
-                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="InputFilterChat" @keyup.enter="filterChats">
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="InputFilterChat" :input="filterChats">
                 </div>  
                 <!-- Lista chat -->
                 <div class="chats">
