@@ -1,7 +1,8 @@
 const app = new Vue ({
     el: '#app',
     data: {
-        currentChat: [],
+        newMessage: '',
+        currentChat: [], /* Ho scelto una struttura dati non adatta, mi sto complicando!! */
         contacts: [
             {
                 name: 'Michele',
@@ -168,6 +169,7 @@ const app = new Vue ({
     },
     methods: {
         activeChat(contact){
+            this.newMessage = ''
             this.currentChat = []
             this.currentChat.push(contact)
             console.log(contact, this.currentChat);
@@ -188,7 +190,7 @@ const app = new Vue ({
             const element = selectElements[index]
             element.classList.toggle('d_none')
         },
-        deleteMessage(message_info, contact){
+        deleteMessage(message_info){
             console.log(message_info);
             const array = this.currentChat[0].messages
             console.log(array);
@@ -196,8 +198,38 @@ const app = new Vue ({
             console.log(index)
             array.splice(index, 1)
             console.log(array);
-            console.log(contact);
-        }
+        },
+        sendMessage(newMessage){
+            if (newMessage !== ''){
+                const array = this.currentChat[0]
+                const d = new Date()
+                const date = d.getDate() + '/' + 0 + Number(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+
+                console.log(date);
+
+                const message = {
+                    date: date,
+                    message: newMessage,
+                    hour: date.slice(11, date.length - 3),
+                    status: 'sent'
+                }
+
+                console.log(message);
+                array.messages.push(message)
+                this.newMessage = ''
+
+
+                const automatedMessage = {
+                    date: date,
+                    message: 'ok',
+                    hour: date.slice(11, date.length - 3),
+                    status: 'received'
+                }
+                setTimeout(() => {
+                    array.messages.push(automatedMessage)
+                  }, 1000) 
+            }
+        },
        
     }
 })

@@ -92,7 +92,7 @@
                             {{message_info.hour}}
                         </div>
                         <div class="message_actions">
-                            <i class="fa-solid fa-angle-down" @click="selectClick(message_info, contact)"></i>
+                            <i class="fa-solid fa-angle-down" @click="selectClick(message_info)"></i>
                             <div class="msg_actions d_none" >
                                 <span @click="deleteMessage(message_info)">Delete Message</span>
                                 <span>Copy Message</span>
@@ -105,7 +105,7 @@
             <!-- Send message -->
             <div class="send_message">
                 <i class="fa-regular fa-face-smile fa-lg"></i>
-                <input type="text" placeholder="Scrivi un messaggio">
+                <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(newMessage)">
                 <i class="fa-solid fa-microphone fa-lg"></i>
             </div>
         </div>
