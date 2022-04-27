@@ -3,6 +3,8 @@ const app = new Vue ({
     data: {
         newMessage: '',
         automatedReplies: ['Ciao', 'Ok', 'Va bene! :)', 'Capisco', 'Ci aggiorniamo!'],
+        InputFilterChat: '',
+        filteredChats: [],
         currentChat: [], /* Ho scelto una struttura dati non adatta, mi sto complicando!! */
         contacts: [
             {
@@ -168,6 +170,16 @@ const app = new Vue ({
             }
         ]
     },
+    computed: {
+        filterChats() {
+            const word = this.InputFilterChat.toLowerCase()
+            console.log(word);
+            this.filteredChats = []
+            this.filteredChats = this.contacts.filter(contact => {
+                return contact.name.toLowerCase().includes(word)
+            });
+        }
+    },
     methods: {
         activeChat(contact){
             this.newMessage = ''
@@ -230,7 +242,7 @@ const app = new Vue ({
                     array.messages.push(automatedMessage)
                   }, 1000) 
             }
-        },
-       
+        }
+        
     }
 })

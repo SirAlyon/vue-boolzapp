@@ -45,11 +45,11 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     
-                    <input type="text" placeholder="Cerca o inizia una nuova chat">
-                </div>
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="InputFilterChat" @keyup.enter="filterChats">
+                </div>  
                 <!-- Lista chat -->
                 <div class="chats">
-                    <div class="chat" :class="currentChat.includes(contact) ? 'active' : ''" v-for="(contact) in contacts" @click="activeChat(contact)">
+                    <div class="chat" :class="currentChat.includes(contact) ? 'active' : ''" v-for="(contact) in filteredChats" @click="activeChat(contact)">
                         <div class="chat_logo">
                             <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt=""> 
                         </div>
