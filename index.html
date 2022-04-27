@@ -49,7 +49,7 @@
                 </div>  
                 <!-- Lista chat -->
                 <div class="chats">
-                    <div class="chat" :class="currentChat.includes(contact) ? 'active' : ''" v-for="(contact) in filteredChats" @click="activeChat(contact)">
+                    <div v-if="contact.visible === true" class="chat" :class="currentChat === contact ? 'active' : ''" v-for="(contact) in contacts" @click="activeChat(contact)">
                         <div class="chat_logo">
                             <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt=""> 
                         </div>
@@ -67,13 +67,13 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="wa_main" v-for="(contact) in currentChat">
-            <div class="active_chat chat">
+        <div class="wa_main" v-if="currentChat !== ''">
+            <div class="active_chat chat"> 
                     <div class="chat_logo">
-                        <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt=""> 
+                        <img :src="'./img/avatar' + currentChat.avatar + '.jpg'" alt=""> 
                     </div>
                     <div class="chat_text">
-                        <span>{{contact.name}}</span>
+                        <span>{{currentChat.name}}</span>
                         <span>Ultimo accesso oggi alle 12:30</span>
                     </div>
                 <div class="icons active_icons">
@@ -85,14 +85,14 @@
             
             <!-- Messages list -->
             <div class="messages">
-                <div class="msg_margin" v-for="message_info in contact.messages" :class="message_info.status === 'sent' ? 'j-end' : 'j-start'">
+                <div class="msg_margin" v-for="message_info in currentChat.messages" :class="message_info.status === 'sent' ? 'j-end' : 'j-start'">
                     <span :class="message_info.status === 'sent' ? 'msg_sent' : 'msg_received'" class="message">
                         {{message_info.message}}
                         <div class="message_time">
                             {{message_info.hour}}
                         </div>
                         <div class="message_actions">
-                            <i class="fa-solid fa-angle-down" @click="selectClick(message_info)"></i>
+                            <i class="fa-solid fa-angle-down" @click="selectClick(message_info, $event)"></i>
                             <div class="msg_actions d_none" >
                                 <span @click="deleteMessage(message_info)">Delete Message</span>
                                 <span>Copy Message</span>

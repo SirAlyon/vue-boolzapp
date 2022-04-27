@@ -4,8 +4,7 @@ const app = new Vue ({
         newMessage: '',
         automatedReplies: ['Ciao', 'Ok', 'Va bene! :)', 'Capisco', 'Ci aggiorniamo!'],
         InputFilterChat: '',
-        filteredChats: [],
-        currentChat: [], /* Ho scelto una struttura dati non adatta, mi sto complicando!! */
+        currentChat: '', /* Ho scelto una struttura dati non adatta, mi sto complicando!! */
         contacts: [
             {
                 name: 'Michele',
@@ -174,17 +173,20 @@ const app = new Vue ({
         filterChats() {
             const word = this.InputFilterChat.toLowerCase()
             console.log(word);
-            this.filteredChats = []
-            this.filteredChats = this.contacts.filter(contact => {
-                return contact.name.toLowerCase().includes(word)
+            this.contacts.forEach(contact => {
+                if (contact.name.toLowerCase().includes(word)){
+                    contact.visible = true
+                } else {
+                    contact.visible = false
+                }
             });
         }
     },
     methods: {
         activeChat(contact){
             this.newMessage = ''
-            this.currentChat = []
-            this.currentChat.push(contact)
+            this.currentChat = contact
+            
             console.log(contact, this.currentChat);
 
             contact.messages.forEach(message_info => {
@@ -193,19 +195,24 @@ const app = new Vue ({
 
             console.log(this.currentChat);
         },
-        selectClick(message_info){
+        selectClick(message_info, event){
             //console.log(message_info);
-            const array = this.currentChat[0].messages
+            const array = this.currentChat.messages
             //console.log(this.currentChat[0].messages);
             const index = array.indexOf(message_info);
             const selectElements = document.querySelectorAll('.msg_actions')
             //console.log(selectElements[index]);
             const element = selectElements[index]
-            element.classList.toggle('d_none')
+            element.classList.remove('d_none')
+            console.log(event);
+
+            setTimeout(() => {
+                this.closeDropMenu(element, event)
+            }, 10); 
         },
         deleteMessage(message_info){
             console.log(message_info);
-            const array = this.currentChat[0].messages
+            const array = this.currentChat.messages
             console.log(array);
             const index = array.indexOf(message_info);
             console.log(index)
@@ -214,7 +221,7 @@ const app = new Vue ({
         },
         sendMessage(newMessage){
             if (newMessage !== ''){
-                const array = this.currentChat[0]
+                const array = this.currentChat
                 const d = new Date()
                 const date = d.getDate() + '/' + 0 + Number(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
@@ -242,7 +249,15 @@ const app = new Vue ({
                     array.messages.push(automatedMessage)
                   }, 1000) 
             }
-        }
+        },
+        
+        /* closeDropMenu(element, event){
+            if (!element.className.includes('d_none')){
+                window.addEventListener('click', function(){              
+                    element.classList.add('d_none')
+                })
+            }
+        } */
         
     }
 })

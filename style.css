@@ -24,6 +24,9 @@ main{
     width: 1200px;
     height: calc(100vh - 2rem);
     background-color: white;
+    background-image: url(./img/home_bg.png);
+    background-position: right;
+    background-repeat: no-repeat;
     display: flex;
     position: absolute;
     top: 1rem;
