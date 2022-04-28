@@ -322,6 +322,21 @@ input[type=text]:focus {
     padding: 0.7rem 0;
     border-radius: 0.3rem;
 }
+
+.send_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(118, 116, 116, 0.515);
+    width: 45px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    color: black!important;
+}
+
+.send_btn:hover{
+    background-color: rgb(51, 181, 51);
+}
 /* Utility */
 
 .msg_margin{
@@ -345,3 +360,4 @@ input[type=text]:focus {
 .d_none{
     display: none;
 }
+
