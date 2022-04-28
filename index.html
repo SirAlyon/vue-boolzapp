@@ -107,7 +107,10 @@
             <div class="send_message">
                 <i class="fa-regular fa-face-smile fa-lg"></i>
                 <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(newMessage)">
-                <i class="fa-solid fa-microphone fa-lg"></i>
+                <i class="fa-solid fa-microphone fa-lg" :class="newMessage !== '' ? 'd_none' : '' "></i>
+                <span :class="newMessage == '' ? 'd_none' : '' " class="send_btn" @click="sendMessage(newMessage)">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </span>
             </div>
         </div>
     </div>
