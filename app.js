@@ -213,10 +213,14 @@ const app = new Vue ({
             const index = array.indexOf(message_info);
             console.log(index)
             array.splice(index, 1)
+            const selectElements = document.querySelectorAll('.msg_actions')
+            //console.log(selectElements[index]);
+            const element = selectElements[index]
+            element.classList.add('d_none')
             console.log(array);
         },
         sendMessage(newMessage){
-            if (newMessage !== ''){
+            if (newMessage.trim() !== ''){
                 const array = this.currentChat
                 const d = new Date()
                 const date = d.getDate() + '/' + 0 + Number(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
@@ -244,11 +248,13 @@ const app = new Vue ({
                 setTimeout(() => {
                     array.messages.push(automatedMessage)
                   }, 1000) 
+            } else{
+                this.newMessage = ''
             }
         },
         msg_info(message_info){
             const messagesElements = document.querySelectorAll('.msg_actions')
-            console.log(messagesElements);
+            //console.log(messagesElements);
             messagesElements.forEach(message => {
                 if (!message.className.includes('d_none')){
                     message.innerHTML = `Ricevuto il: ` + message_info.hour
@@ -256,14 +262,20 @@ const app = new Vue ({
             })
         },
         getLastMessage(contact){
-            let index = contact.messages.length;
-            return contact.messages[index - 1].message
+            if (contact.messages.length !==0){
+                let index = contact.messages.length;
+                return contact.messages[index - 1].message
+            }
+            
         },
         getLastMsgHour(contact){
-            let index = contact.messages.length;
-            console.log(contact.messages[index - 1]);
+            if (contact.messages.length !==0){
+                let index = contact.messages.length;
+                //console.log(contact.messages[index - 1]);
 
-            return contact.messages[index - 1].date.slice(11, 16)
+                return contact.messages[index - 1].date.slice(11, 16)  
+            }
+            
         }
     }
 })
