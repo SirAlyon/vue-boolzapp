@@ -254,6 +254,16 @@ const app = new Vue ({
                     message.innerHTML = `Ricevuto il: ` + message_info.hour
                 }
             })
+        },
+        getLastMessage(contact){
+            let index = contact.messages.length;
+            return contact.messages[index - 1].message
+        },
+        getLastMsgHour(contact){
+            let index = contact.messages.length;
+            console.log(contact.messages[index - 1]);
+
+            return contact.messages[index - 1].date.slice(11, 16)
         }
     }
 })

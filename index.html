@@ -55,9 +55,9 @@
                         </div>
                         <div class="chat_text">
                             <span>{{contact.name}}</span>
-                            <span>Ultimo messaggio inviato</span>
+                            <span>{{ getLastMessage(contact) }}</span>
                             <span class="chat_time">
-                                12:00
+                                {{  getLastMsgHour(contact) }}
                             </span>
                         </div>
                     </div>
