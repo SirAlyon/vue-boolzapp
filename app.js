@@ -172,7 +172,7 @@ const app = new Vue ({
     computed: {
         filterChats() {
             const word = this.InputFilterChat.toLowerCase()
-            console.log(word);
+            //console.log(word);
             this.contacts.forEach(contact => {
                 if (contact.name.toLowerCase().includes(word)){
                     contact.visible = true
@@ -223,7 +223,7 @@ const app = new Vue ({
             if (newMessage.trim() !== ''){
                 const array = this.currentChat
                 const d = new Date()
-                const date = d.getDate() + '/' + 0 + Number(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                const date = d.getDate() + '/' + 0 + d.getMonth() + 1 + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
                 console.log(date);
 
@@ -245,9 +245,23 @@ const app = new Vue ({
                     hour: date.slice(11, date.length - 3),
                     status: 'received'
                 }
+
+                const status = document.getElementById('active_status')
+                setTimeout(() => {
+                    this.setWriting(status)
+                }, 1000);
+
                 setTimeout(() => {
                     array.messages.push(automatedMessage)
-                  }, 1000) 
+                }, 2000)  
+
+                setTimeout(() => {
+                    this.setOnline(status)
+                }, 2000);
+
+                setTimeout(() => {
+                    this.setLastAccess(status)
+                }, 5000);
             } else{
                 this.newMessage = ''
             }
@@ -276,6 +290,17 @@ const app = new Vue ({
                 return contact.messages[index - 1].date.slice(11, 16)  
             }
             
+        },
+        setOnline(status){
+            status.innerHTML = 'Online'
+        },
+        setWriting(status){
+            status.innerHTML = 'Sta Scrivendo...'
+        },
+        setLastAccess(status){
+            d = new Date()
+            status.innerHTML = 'Ultimo accesso alle ' + d.getHours() + ':' + d.getMinutes()
         }
+
     }
 })
