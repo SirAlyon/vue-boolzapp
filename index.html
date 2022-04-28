@@ -95,7 +95,8 @@
                             <i class="fa-solid fa-angle-down" @click="selectClick(message_info, $event)"></i>
                             <div class="msg_actions d_none" >
                                 <span @click="deleteMessage(message_info)">Delete Message</span>
-                                <span>Copy Message</span>
+                                <span @click="msg_info(message_info)">Message Info</span>
+
                             </div>
                         </div>
                     </span> 

@@ -203,12 +203,8 @@ const app = new Vue ({
             const selectElements = document.querySelectorAll('.msg_actions')
             //console.log(selectElements[index]);
             const element = selectElements[index]
-            element.classList.remove('d_none')
+            element.classList.toggle('d_none')
             console.log(event);
-
-            setTimeout(() => {
-                this.closeDropMenu(element, event)
-            }, 10); 
         },
         deleteMessage(message_info){
             console.log(message_info);
@@ -250,14 +246,14 @@ const app = new Vue ({
                   }, 1000) 
             }
         },
-        
-        /* closeDropMenu(element, event){
-            if (!element.className.includes('d_none')){
-                window.addEventListener('click', function(){              
-                    element.classList.add('d_none')
-                })
-            }
-        } */
-        
+        msg_info(message_info){
+            const messagesElements = document.querySelectorAll('.msg_actions')
+            console.log(messagesElements);
+            messagesElements.forEach(message => {
+                if (!message.className.includes('d_none')){
+                    message.innerHTML = `Ricevuto il: ` + message_info.hour
+                }
+            })
+        }
     }
 })

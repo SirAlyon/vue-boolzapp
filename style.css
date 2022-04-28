@@ -223,9 +223,12 @@ input[type=text]:focus {
 
 /* Active messages in chat */
 .messages{
-    width: 90%;
-    margin: 2rem auto;
     height: calc(100% - 61px - 61px);
+    overflow-y: scroll;
+    padding: 1rem 5% 0rem 5%;
+    scrollbar-color: rgb(137, 136, 138), rgb(47, 47, 47);
+    scrollbar-width: thin;
+    
 }
 
 .message{
